@@ -1,0 +1,39 @@
+server:
+  port: 9000
+
+logging:
+  level:
+    com.example: debug
+    org.springframework: warn
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8&allowMultiQueries=true
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 5
+      maximum-pool-size: 50
+      max-lifetime: 5000
+      connection-timeout: 5000
+      connection-test-query: SELECT 1 FROM DUAL
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+  data:
+    redis:
+      host: 114.116.124.46
+      port: 6379
+      database: 10
+      timeout: 10s
+      lettuce:
+        pool:
+          min-idle: 1
+          max-idle: 8
+          max-active: 8
+          max-wait: -1ms

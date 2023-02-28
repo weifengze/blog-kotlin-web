@@ -2,6 +2,11 @@ package com.example.blog.framework.web.domain
 
 import java.io.Serializable
 
+/**
+ * 响应信息主体
+ *
+ * @author weifengze
+ */
 class R<T> : Serializable {
     var code = 0
     var msg: String? = null

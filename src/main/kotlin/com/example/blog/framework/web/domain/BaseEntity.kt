@@ -10,22 +10,27 @@ import java.time.Instant
  */
 open class BaseEntity(
     // 创建者
-    val createBy: String? = null,
+    var createBy: String? = null,
     /**
      * 创建时间
      * @link https://blog.csdn.net/aihe1907/article/details/101198745
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    val createTime: Instant,
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    var createTime: Instant,
     // 更新者
-    val updateBy: String? = null,
+    var updateBy: String? = null,
     // 更新时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    val updateTime: Instant,
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    var updateTime: Instant,
     // 备注
-    val remark: String? = null,
+    var remark: String? = null,
     // 请求参数
     var params: MutableMap<String, Any?> = HashMap()
 ) : Serializable {
-    constructor() : this(null, Instant.now(), null, Instant.now(), null, HashMap());
+    constructor() : this(null, Instant.now(), null, Instant.now(), null, HashMap())
+
+    override fun toString(): String {
+        return "BaseEntity(createBy=$createBy, createTime=$createTime, updateBy=$updateBy, updateTime=$updateTime, remark=$remark, params=$params)"
+    }
+
 }

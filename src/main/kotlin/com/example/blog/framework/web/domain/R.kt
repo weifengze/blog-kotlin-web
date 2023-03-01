@@ -18,51 +18,52 @@ class R<T> : Serializable {
         /**
          * 成功
          */
-        private const val SUCCESS = 0
+        const val SUCCESS = 0
 
         /**
          * 失败
          */
-        private const val FAIL = 500
+        const val FAIL = 500
 
-        fun <T> ok(): R<T?> {
-            return restResult(null, SUCCESS, "操作成功")
-        }
+    }
+}
 
-        fun <T> ok(data: T): R<T> {
-            return restResult(data, SUCCESS, "操作成功")
-        }
+fun <T> ok(): R<T?> {
+    return restResult(null, R.SUCCESS, "操作成功")
+}
 
-        fun <T> ok(data: T, msg: String): R<T> {
-            return restResult(data, SUCCESS, msg)
-        }
+fun <T> ok(data: T): R<T> {
+    return restResult(data, R.SUCCESS, "操作成功")
+}
 
-        fun <T> fail(): R<T?> {
-            return restResult(null, FAIL, "操作失败")
-        }
+fun <T> ok(data: T, msg: String): R<T> {
+    return restResult(data, R.SUCCESS, msg)
+}
 
-        fun <T> fail(msg: String): R<T?> {
-            return restResult(null, FAIL, msg)
-        }
+fun <T> fail(): R<T?> {
+    return restResult(null, R.FAIL, "操作失败")
+}
 
-        fun <T> fail(data: T): R<T> {
-            return restResult(data, FAIL, "操作失败")
-        }
+fun <T> fail(msg: String): R<T?> {
+    return restResult(null, R.FAIL, msg)
+}
 
-        fun <T> fail(data: T, msg: String): R<T> {
-            return restResult(data, FAIL, msg)
-        }
+fun <T> fail(data: T): R<T> {
+    return restResult(data, R.FAIL, "操作失败")
+}
 
-        fun <T> fail(code: Int, msg: String): R<T?> {
-            return restResult(null, code, msg)
-        }
+fun <T> fail(data: T, msg: String): R<T> {
+    return restResult(data, R.FAIL, msg)
+}
 
-        private fun <T> restResult(data: T, code: Int, msg: String): R<T> {
-            return R<T>().apply {
-                this.msg = msg
-                this.code = code
-                this.data = data
-            }
-        }
+fun <T> fail(code: Int, msg: String): R<T?> {
+    return restResult(null, code, msg)
+}
+
+private fun <T> restResult(data: T, code: Int, msg: String): R<T> {
+    return R<T>().apply {
+        this.msg = msg
+        this.code = code
+        this.data = data
     }
 }

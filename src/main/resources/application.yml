@@ -7,6 +7,13 @@ logging:
     org.springframework: warn
 
 spring:
+  security:
+    user:
+      name: admin
+      password: admin
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   devtools:
     restart:
       enabled: true
@@ -37,3 +44,11 @@ spring:
           max-idle: 8
           max-active: 8
           max-wait: -1ms
+# token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌密钥
+  secret: 7NojZibvd7qgcBm0zio2qYERbPcg4pw51
+  # 令牌有效期（默认30分钟）
+  expireTime: 30
